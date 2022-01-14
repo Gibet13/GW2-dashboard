@@ -1,0 +1,23 @@
+body {
+    background-color: rgb(34, 34, 34);
+    color: blanchedalmond;
+}
+
+.navbar {
+    justify-content: flex-start;
+}
+
+#dailies {
+    display : flex;
+    justify-content : space-around;
+    margin:1%;
+}
+.achievement {
+    padding:1%;
+}
+
+.achievement:hover {
+    background-color: rgb(46, 56, 56);
+    border :blanchedalmond;
+    border-radius : 3%;
+}
