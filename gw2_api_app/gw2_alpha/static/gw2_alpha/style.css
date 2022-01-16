@@ -17,6 +17,7 @@ body {
 }
 
 .achievement:hover {
+    transition: ease;
     background-color: rgb(46, 56, 56);
     border :blanchedalmond;
     border-radius : 3%;

@@ -13,18 +13,25 @@
     <script src="{% static 'gw2_alpha/index.js' %}"></script>
 </head>
 <body>
-<h1>Test</h1>
-<h2>Achievements</h2>
-<div id="daily_achievements">
-    <div>
-        <nav id="daily_navbar" class="navbar">
-            <div id="daily_today" class="achievement">Today</div>
-            <div id="daily_tomorrow" class="achievement">Tomorrow</div>
-        </nav>
-    </div>
-    <div id="dailies"></div>
-</div>
 
-<div id="details" class="info-box"></div>
+    <h1>Achievements</h1>
+
+    <div>
+        <nav id="main_navbar" class="navbar"></nav>
+        <nav id="cat_navbar" class="navbar"></nav>
+        <div>
+            <nav id="daily_navbar" class="navbar">
+                <div id="daily_today" class="achievement">Today</div>
+                <div id="daily_tomorrow" class="achievement">Tomorrow</div>
+            </nav>
+        </div>
+    </div>
+
+    <div id="achievements"></div>
+
+    <div id="dailies"></div>
+
+    <div id="details" class="info-box"></div>
+
 </body>
 </html>
