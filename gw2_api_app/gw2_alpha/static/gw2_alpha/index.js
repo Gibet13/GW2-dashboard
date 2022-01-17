@@ -1,45 +1,7 @@
 document.addEventListener('DOMContentLoaded', (event) => {
-
-    //document.getElementById("daily_today").onclick =function() {load_dailies("")};
-    //document.getElementById("daily_tomorrow").onclick = function() {load_dailies('/tomorrow')};
-
     load_groups()
 });
 
-
-function load_dailies(date) {
-    
-    fetch(`https://api.guildwars2.com/v2/achievements/daily${date}`)
-    .then(response => response.json())
-    .then(dailies => {
-        
-        dailiesList = document.getElementById('dailies');
-        dailiesList.innerHTML = "";
-
-        for(let key of Object.keys(dailies)) {
-            category = document.createElement('div');
-            category.setAttribute('id',`${key}`);
-            category.innerHTML = `<h3>${key}</h3>`;
-            
-            dailies[key].forEach(element => {
-
-                fetch(`https://api.guildwars2.com/v2/achievements?id=${element.id}`)
-                .then(response => response.json())
-                .then(result => {
-
-                    daily = document.createElement('div');
-                    daily.classList.add('achievement');
-                    daily.innerHTML = `${result.name}`;
-                    document.getElementById(key).append(daily)
-                    daily.onclick = function() {load_achievement(element.id)};
-                    
-                })
-                
-                dailiesList.append(category);
-            }); 
-        }
-    });
-}
 
 function load_groups() {
     
@@ -134,34 +96,9 @@ function load_category(cat_id) {
                 ach_body.classList.add('accordion-body')
                 ach_body.innerHTML = achievement.requirement;
                 ach_collapse.append(ach_body);
-
-                
-                //ach_box.onclick = function() {load_achievement(achievement.id)};
                 
                 cat_div.append(ach_box)
             })
         })
-    })
-}
-
-function load_achievement(id) {
-    fetch(`https://api.guildwars2.com/v2/achievements?id=${id}`)
-    .then(response => response.json())
-    .then(result => {
-        details = document.getElementById(`ach${result.id}`);
-
-        descryption = document.createElement('div');
-        descryption.setAttribute('id', `desc${result.id}`)
-        descryption.innerHTML = "";
-        descryption.classList.add('achievement');
-        descryption.innerHTML = `${result.requirement}`;
-
-        if(!document.getElementById(`ach${result.id}`)){
-            details.append(descryption);
-        }
-        else{
-            //details.parentNode.removeChild(document.getElementById(`desc${result.id}`));
-        }
-    
     })
 }
