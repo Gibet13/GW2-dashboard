@@ -1,24 +1,36 @@
 body {
-    background-color: rgb(34, 34, 34);
-    color: blanchedalmond;
+    background-color: rgb(29, 29, 29);
+    color: darkgray;
+    margin: 1%;
 }
 
 .navbar {
     justify-content: flex-start;
 }
 
-#dailies {
-    display : flex;
-    justify-content : space-around;
-    margin:1%;
+.accordion-button {
+
+    background-color: rgb(29, 29, 29);
+    color: darkgray;
 }
+.accordion-body {
+
+    background-color: rgb(51, 51, 51);
+    padding: 2%;
+    color: darkgray;
+}
+
 .achievement {
+
+    transition: background-color 0.3s linear;
+    display: flex;
+    align-items: center;
     padding:1%;
 }
 
 .achievement:hover {
-    transition: ease;
-    background-color: rgb(46, 56, 56);
-    border :blanchedalmond;
+    
+    background-color: rgb(101, 126, 136);
+    color: black;
     border-radius : 3%;
 }
