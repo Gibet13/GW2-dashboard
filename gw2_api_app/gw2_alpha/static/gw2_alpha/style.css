@@ -6,6 +6,27 @@ body {
 
 .navbar {
     justify-content: flex-start;
+    background-color: rgb(29, 29, 29);
+    color: darkgray;
+}
+
+.ach_view {
+    display: flex;
+}
+
+#group_menu {
+    flex:  0 0 1;
+    display: flex;
+    flex-direction: column;
+    margin: 1%;
+}
+
+#group_content {
+    flex: 1 0 auto;
+}
+
+.accordion-header {
+    border-bottom: rgb(39, 39, 39);
 }
 
 .accordion-button {
@@ -25,7 +46,6 @@ body {
     transition: background-color 0.3s linear;
     display: flex;
     align-items: center;
-    padding:1%;
 }
 
 .achievement:hover {
