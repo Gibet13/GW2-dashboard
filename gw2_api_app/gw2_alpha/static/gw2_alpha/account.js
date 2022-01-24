@@ -1,5 +1,9 @@
 document.addEventListener('DOMContentLoaded', (event) => {
     document.getElementById('api_key_test').onclick = function() {api_key_test()};
+
+    document.getElementById('menu_gear').onclick = function() {toggle_tab('gear')}
+    document.getElementById('menu_build').onclick = function() {toggle_tab('build')}
+    
 });
 
 
@@ -34,4 +38,15 @@ function load_characters(api_key) {
 
 function load_bank(api_key) {
 
+}
+
+function toggle_tab (tab_id) {
+
+    tab = document.getElementById(tab_id)
+    if(tab.style.display == 'none') {
+        tab.style.display = 'flex';
+    }
+    else {
+        tab.style.display = 'none';
+    }
 }
