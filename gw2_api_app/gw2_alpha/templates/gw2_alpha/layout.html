@@ -14,7 +14,7 @@
     {% endblock %}
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm navbar-dark">
+    <nav id="general_navbar" class="navbar navbar-expand-sm navbar-dark">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">Navbar</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,6 +24,7 @@
             <div class="navbar-nav">
               <a class="nav-link" aria-current="page" href="{% url 'index' %}">Achievements</a>
               <a class="nav-link" href="{% url 'show_account' %}">Account</a>
+              <a class="nav-link" href="">BuildCraft</a>
             </div>
           </div>
         </div>

@@ -1,7 +1,6 @@
 body {
     background-color: rgb(29, 29, 29);
     color: darkgray;
-    margin: 1%;
 }
 
 .navbar {
@@ -14,11 +13,15 @@ body {
     display: flex;
 }
 
-#group_menu {
+#general_navbar {
+    background-color: crimson;
+}
+
+#navigation_menu {
     flex:  0 0 1;
     display: flex;
     flex-direction: column;
-    margin: 1%;
+    padding: 1%;
 }
 
 #group_content {
@@ -54,3 +57,43 @@ body {
     color: black;
     border-radius : 3%;
 }
+
+#account {
+    padding: 1.5%;
+}
+
+#chara_navigation {
+    margin: 2%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+#gear {
+    display: flex;
+    justify-content:space-around;
+}
+  
+#trinkets {
+    display: flex;
+    flex-direction:column
+}
+  
+#trinkets div {
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+}
+  
+#stat_view {
+    height: 250px;
+    width: 175px;
+    background-color: grey;
+}
+  
+.icon {
+    margin: 1%;
+    height: 50px;
+    width: 50px;
+    background-color: grey;
+}
+  

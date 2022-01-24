@@ -9,4 +9,107 @@
 {% endblock %}
 
 {% block body %}
+
+<div class="ach_view">
+    
+    <div id="navigation_menu">
+        
+        <h2>Navigation</h2>
+        <ul id="main_navbar" class="navbar-nav">
+            
+            <div>Characters</div>
+            <div>Bank</div>
+            <div></div>
+        </ul>
+
+    </div>
+
+    <hr>
+
+    <div id="account" class="container">
+
+        <div id="key_form" class="container">
+            <input id="api-key" type="" placeholder="API key">
+            <button id="api_key_test">Submit</button>
+        </div>
+
+        <div id="character_sheet" class="container">
+            <div id="chara_navigation">
+              <div id="chara_tabs">Info</div>
+              <div id="chara_info">
+                <div>Inventory</div>
+                <div>Build</div>
+              </div>
+            </div>
+            <div id="gear">
+              <div id="main_gear">
+                <div id="armor_piece">
+                  Armor
+                  <div class="icon">1</div>
+                  <div class="icon">2</div>
+                  <div class="icon">3</div>
+                  <div class="icon">4</div>
+                  <div class="icon">5</div>
+                  <div class="icon">6</div>
+                </div>
+                <div id="land_weapons_set">
+                  Weapon Set
+                  <div id="set_1">
+                    set 1
+                    <div class="icon">1</div>
+                    <div class="icon">2</div>
+                  </div>
+                  <div id="set_2">
+                    set 2
+                    <div class="icon">1</div>
+                    <div class="icon">2</div>
+                  </div>
+                </div>
+              </div>
+              <div id="secondary_gear">
+                stats
+                <div id="stat_view">
+                  Attributes
+                </div>
+                <div id="trinkets">
+                  Trinkets
+                  <div>
+                    <div id="backpiece" class="icon">1</div>
+                    <div id="accesory">
+                      <div class="icon">1</div>
+                      <div class="icon">2</div>
+                    </div>
+                  </div>
+                  <div>
+                    <div id="amulet" class="icon">1</div>
+                    <div id="rings">
+                      <div class="icon">1</div>
+                      <div class="icon">2</div>
+                    </div>
+                  </div>
+                  Underwater
+                  <div id="underwater_gear">
+          
+                    <div>
+                      <div class="icon">1</div>
+                      <div class="icon">1</div>
+                      <div class="icon">2</div>
+                    </div>
+          
+                  </div>
+                </div>
+          
+              </div>
+            </div>
+          
+          </div>
+        
+        <div id="inventory" class="container"></div>
+
+        <div id="tooltip"></div>
+            
+    </div>
+
+</div>
+
 {% endblock %}
