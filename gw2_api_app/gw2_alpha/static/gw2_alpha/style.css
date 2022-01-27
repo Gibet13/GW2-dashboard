@@ -19,6 +19,7 @@ body {
 
 #navigation_menu {
     flex:  0 0 1;
+    border-right: 1px solid gray;
     display: flex;
     flex-direction: column;
     padding: 1%;
@@ -44,11 +45,16 @@ body {
     color: darkgray;
 }
 
+.accordion-item {
+    background-color: rgb(29, 29, 29);
+}
+
 .achievement {
 
     transition: background-color 0.3s linear;
     display: flex;
     align-items: center;
+    flex-direction: column;
 }
 
 .achievement:hover {
