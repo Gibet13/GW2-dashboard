@@ -1,0 +1,13 @@
+#navigation_menu {
+    border-right: 1px solid grey;
+}
+
+#menu_content {
+    display: flex;
+    flex-direction: column;
+}
+
+#menu_content li:hover {
+    color: black;
+    background-color: lightblue;
+}

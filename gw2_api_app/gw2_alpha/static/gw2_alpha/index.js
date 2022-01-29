@@ -15,7 +15,7 @@ function load_groups() {
             .then(response => response.json())
             .then(group => {
                 
-                group_tab = document.createElement('div');
+                group_tab = document.createElement('li');
                 group_tab.innerHTML = group.name;
                 group_tab.setAttribute('id', `grp${group.id}`);
                 group_tab.onclick = function() {load_categories(group.id)};
