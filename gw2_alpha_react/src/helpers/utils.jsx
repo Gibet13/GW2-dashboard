@@ -1,3 +1,5 @@
+import React from 'react';
+
 
 function load_groups() {
 
@@ -11,12 +13,12 @@ function load_groups() {
             .then(response => response.json())
             .then(group => {
                 
-                items.push({key:group.id, value:group.name})
+                items.push(group.name)
                 
             })
         })
     })   
-    console.log(items);
+    console.log(items[0])
     return items;
 }
 

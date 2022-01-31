@@ -11,3 +11,5 @@ import page_content from './layouts/content.jsx';
 ReactDOM.render(header, document.getElementById('header'));
 ReactDOM.render(<Sidebar />, document.getElementById('sidebar'));
 ReactDOM.render(page_content, document.getElementById('content'));
+
+

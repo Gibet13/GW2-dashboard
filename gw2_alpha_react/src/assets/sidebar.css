@@ -1,8 +1,17 @@
 #navigation_menu {
+    padding: 1%;
     border-right: 1px solid grey;
+    display: flex;
+    flex-direction: column;
+}
+
+li {
+    transition: background-color 0.3s linear;
+    list-style-type: none;
 }
 
 #menu_content {
+    
     display: flex;
     flex-direction: column;
 }

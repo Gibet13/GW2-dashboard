@@ -3,8 +3,10 @@ body {
     color: white;
 }
 
+
 #page_view {
     display: flex;
     flex-direction:row;
+    margin: 1%;
 }
 
