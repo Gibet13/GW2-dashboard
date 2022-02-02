@@ -1,3 +1,15 @@
+body {
+    background-color: rgb(20, 20, 20);
+    color: #a4a4a4;
+}
+
+
+#page_view {
+    display: flex;
+    flex-direction:row;
+    margin: 1%;
+}
+
 #navigation_menu {
     padding: 1%;
     border-right: 1px solid grey;
@@ -16,7 +28,18 @@ li {
     flex-direction: column;
 }
 
+#menu_content img {
+    
+    height: 5%;
+    width: 5%;
+}
+
 #menu_content li:hover {
     color: black;
-    background-color: lightblue;
+    background-color: rgb(153, 185, 196);
 }
+
+#content {
+    flex: 1 0 auto;
+}
+
