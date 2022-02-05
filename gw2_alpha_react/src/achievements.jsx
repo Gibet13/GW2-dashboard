@@ -2,14 +2,14 @@ import React from 'react';
 
 import './assets/achievements.css';
 import header from './layouts/header.jsx';
-import Achievements from './helpers/utils';
+import Achievements from './layouts/achievementsView';
 
 
-class MainWrapper extends React.Component {
+class AchievementsPage extends React.Component {
     state = {
         loading_groups: true,
         loading_categories: true,
-        loading_achivements:true,
+        currentview:null,
         groups_ids: null,
         groups_info:null,
         categories_info: null,
@@ -59,8 +59,8 @@ class MainWrapper extends React.Component {
     }
 
     async fetchcategory(ids) {
-
-        var id_list = ids.join(',')
+        
+        var id_list = ids.join(',');
             
         fetch(`https://api.guildwars2.com/v2/achievements?ids=${id_list}`)
         .then(response => response.json())
@@ -69,7 +69,10 @@ class MainWrapper extends React.Component {
             this.setState({achievements_info: category});
             
         })
-        this.state.loading_achivements = false;
+    }
+
+    changeLabel(name) {
+        this.setState({currentview: name});
     }
 
     showGroup() {
@@ -94,7 +97,6 @@ class MainWrapper extends React.Component {
 
         return (
             <React.Fragment>
-                {header}
                 <div id='page_view'>
                     <div id='menu_content'>
                         <h3>Navigation</h3>
@@ -103,7 +105,7 @@ class MainWrapper extends React.Component {
                             this.state.loading_groups || !this.state.groups_info ? (<div>Loading...</div>)
                                  : 
                                 (<div id="menu_content">
-                                    {this.state.groups_info.map(item => { return <li key={item.id} title={item.description} onClick={() => {this.fetchgroup(item.categories); this.showGroup()}}>{item.name}</li>})}
+                                    {this.state.groups_info.map(item => { return <li key={item.id} title={item.description} onClick={() => {this.fetchgroup(item.categories); this.showGroup();this.changeLabel(item.name)}}>{item.name}</li>})}
                                 </div>
                             )
                         }
@@ -112,7 +114,7 @@ class MainWrapper extends React.Component {
                         <div id='categories'>
                             <nav  className="navbar navbar-dark">
                                 <div className="container-fluid">
-                                    <a className="navbar-brand" href="#">Categories</a>
+                                    <a className="navbar-brand" href="#">{this.state.currentview ? (<div>{this.state.currentview}</div>):(<React.Fragment></React.Fragment>)}</a>
                                     <button id='group_toggle' className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#CATNav" aria-controls="CATNav" aria-expanded="false" aria-label="Toggle navigation">
                                         <span className="navbar-toggler-icon"></span>
                                     </button>
@@ -122,7 +124,7 @@ class MainWrapper extends React.Component {
                                                 (<div>Select an achievement group</div>)
                                                  :
                                                 (<div id="menu_content">
-                                                    {this.state.categories_info.map(item => { return <li key={item.id} onClick={() => {this.fetchcategory(item.achievements); this.hideGroup()}}><img src={item.icon}/>{item.name}</li>})}
+                                                    {this.state.categories_info.map(item => { return <li key={item.id} onClick={() => {this.fetchcategory(item.achievements); this.hideGroup(); this.changeLabel(item.name)}}><img src={item.icon}/>{item.name}</li>})}
                                                 </div>)
                                             }
                                         </ul>
@@ -130,8 +132,8 @@ class MainWrapper extends React.Component {
                                 </div>
                             </nav>
                         </div>
-                        <div id='achivements' class="accordion accordion-flush">
-                                {!this.state.achievements_info ?(<div>Prout</div>):(<Achievements ach_list = {this.state.achievements_info}/>)}
+                        <div id='achievements' className="accordion accordion-flush">
+                                {!this.state.achievements_info ?(<React.Fragment></React.Fragment>):(<Achievements ach_list = {this.state.achievements_info}/>)}
                         </div>
                     </div>
                 </div>
@@ -140,4 +142,4 @@ class MainWrapper extends React.Component {
     }
 }
  
-export default MainWrapper;
+export default AchievementsPage;

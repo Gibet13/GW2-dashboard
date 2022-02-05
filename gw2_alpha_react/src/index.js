@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {BrowserRouter, Switch, Route} from 'react-router-dom'
 
-import MainWrapper from './achievements';
+import App from'./App.js'
 
-ReactDOM.render(<MainWrapper />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
 

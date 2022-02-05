@@ -20,46 +20,31 @@ body {
 li {
     transition: background-color 0.3s linear;
     list-style-type: none;
+    cursor: pointer;
 }
 
 #menu_content {
-    
+    flex: 0 1 auto;
     display: flex;
     flex-direction: column;
 }
 
 #menu_content img {
-    
-    max-height: 23px;
-    max-width: 23px;
+    height: 1.4rem;
+    width: 1.4rem;
+    margin-right: 0.5rem;
 }
 
 #menu_content li:hover {
-    color: black;
-    background-color: rgb(144, 168, 177);
+    color: white;
+}
+
+#achievements {
+    margin: 1%;
 }
 
 #content {
-    flex: 1 0 auto;
+    flex: 1 1 auto;
 }
 
-.accordion-header {
-    border-bottom: rgb(39, 39, 39);
-}
-
-.accordion-button {
-
-    background-color: rgb(20 20 20);
-    color: darkgray;
-}
-.accordion-body {
-
-    background-color: rgb(51, 51, 51);
-    padding: 2%;
-    color: darkgray;
-}
-
-.accordion-item {
-    background-color: rgb(29, 29, 29);
-}
 

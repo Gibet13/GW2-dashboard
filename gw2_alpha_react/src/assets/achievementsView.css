@@ -1,0 +1,49 @@
+.accordion-header {
+    border-bottom: rgb(39, 39, 39);
+}
+
+.accordion-button {
+
+    background-color: rgb(20 20 20);
+    color: darkgray;
+    padding: 0.5rem;
+}
+
+.accordion-button img {
+    height: 1.4rem;
+    width: 1.4rem;
+    margin-right: 0.5rem;
+}
+
+.accordion-button:not(.collapsed) {
+    color: #ffffff;
+    background-color: #dc143c;
+}
+
+.accordion-button:focus {
+    border-color: #842029;
+    box-shadow: 0 0 0 0.25rem #842029bd;
+}
+
+.accordion-body {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(51, 51, 51);
+    padding: 2%;
+    color: darkgray;
+}
+
+#descryption {
+    flex:  1 1 auto;
+}
+
+#rewards{
+    padding-left: .5rem;
+    margin-left: .5rem;
+    flex: 1 0 auto;
+    text-align: end;
+}
+
+.accordion-item {
+    background-color: rgb(29, 29, 29);
+}
