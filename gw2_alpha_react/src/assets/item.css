@@ -1,0 +1,36 @@
+.item {
+    margin: 1%;
+}
+
+.item img{
+    height: 64px;
+    width: 64px;
+}
+
+.Legendary {
+    border:2px solid #a02ef7;
+}
+
+.Ascended {
+    border:2px solid #f48;
+}
+
+.Exotic {
+    border:2px solid #b46900;
+}
+
+.Rare {
+    border:2px solid #b49b1e;
+}
+
+.Fine {
+    border: 2px solid #4f9dfe;
+}
+
+.Basic {
+    border: 2px solid grey;
+}
+
+.Junk {
+    border: 2px solid grey;
+}

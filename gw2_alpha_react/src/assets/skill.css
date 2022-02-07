@@ -1,0 +1,11 @@
+.Heal {
+    border: 2px solid rgb(94, 185, 216);
+}
+
+.Utility {
+    border: 2px solid white;
+}
+
+.Elite {
+    border: 2px solid goldenrod;
+}

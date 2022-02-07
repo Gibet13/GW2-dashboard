@@ -13,7 +13,7 @@ const header =  <nav id="general_navbar" className="navbar navbar-expand-sm navb
                             <div className="navbar-nav">
                             <Link to="/" ><li className="nav-link">Achievements</li></Link>
                             <Link to="/account"><li className="nav-link">Account</li></Link>
-                            <li className="nav-link">BuildCraft</li>
+                            <li className="nav-link">Events</li>
                             </div>
                         </div>
                     </div>

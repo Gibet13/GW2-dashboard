@@ -1,0 +1,52 @@
+#gear {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    
+}
+
+#gear_view {
+    width: 75%;
+    display: flex;
+    flex-direction: row;
+}
+
+#main_gear {
+    display: flex;
+    flex: 1 0 auto;
+    flex-direction: column;
+    align-items: center;
+}
+
+#secondary_gear {
+    display: flex;
+    flex: 1 0 auto;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+}
+  
+#trinkets {
+    display: flex;
+    flex-direction:column
+}
+  
+#trinkets div {
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+}
+  
+#stat_view {
+    margin-bottom: 2rem;
+    
+}
+  
+.icon {
+    margin: 1%;
+    min-height: 64px;
+    min-width: 64px;
+    border:2px solid #303030
+}
+
