@@ -8,6 +8,7 @@ import { SecToHours } from './helpers/utils.js'
 
 class AccountPage extends Component {
     state = {
+        viewstate:null,
         valid_key:false,
         api_key:null,
         chara_list:null,
@@ -15,7 +16,6 @@ class AccountPage extends Component {
         equipment:null,
         skills:null,
         traits:null,
-        loading_chara:true
     }
 
     async verify_key() {
@@ -39,8 +39,7 @@ class AccountPage extends Component {
         var response = await fetch(`https://api.guildwars2.com/v2/characters?access_token=${key}`)
         var result = await response.json()
 
-        this.setState({chara_list: result})
-        this.state.loading_chara = false;       
+        this.setState({chara_list: result})       
     }
 
     async load_character(key, name) {
@@ -97,6 +96,10 @@ class AccountPage extends Component {
         this.setState({traits:info})
     }
 
+    changeview(view) {
+        this.state.viewstate = view;
+    }
+
     render() {
 
         return (
@@ -111,7 +114,7 @@ class AccountPage extends Component {
                         <div>
                             <div>Characters</div>
                             <div id='chara_list'>
-                                {!this.state.chara_list ? (<React.Fragment/>):(this.state.chara_list.map(item => {return <li key={item} onClick={() => this.load_character(this.state.api_key, item)}>{item}</li>}))}
+                                {!this.state.chara_list ? (<React.Fragment/>):(this.state.chara_list.map(item => {return <li key={item} onClick={() => {this.load_character(this.state.api_key, item);this.changeview(null)}}>{item}</li>}))}
                             </div>
                         </div>
                             
@@ -128,11 +131,11 @@ class AccountPage extends Component {
                                             <div>Profession: {this.state.character.profession}</div>
                                             <div>Level: {this.state.character.level}</div>
                                             <div>Playtime: {SecToHours(this.state.character.age)}</div>
-                                            <div>Created: {this.state.character.created}</div>
+                                            <div>Created: {new Date(this.state.character.created).toLocaleString()}</div>
                                         </div>
                                         <div id='chara_menu'>
-                                            <li onClick={() => this.equipmentInfo(this.state.character.equipment)}>Equipment</li>
-                                            <li onClick={() => {this.traitInfo(this.state.character.specializations);this.skillInfo(this.state.character.skills)}}>Build</li>
+                                            <li onClick={() => {this.equipmentInfo(this.state.character.equipment);this.changeview(1)}}>Equipment</li>
+                                            <li onClick={() => {this.traitInfo(this.state.character.specializations);this.skillInfo(this.state.character.skills);this.changeview(2)}}>Build</li>
                                             <li>Inventory</li>
                                             <li>Backstory</li>
                                         </div>
@@ -141,8 +144,8 @@ class AccountPage extends Component {
                                 <hr></hr>
                             </React.Fragment>
                             )}
-                        {!this.state.equipment ? (<React.Fragment/>) : (<CharaGear gear = {this.state.equipment}/>)}
-                        {!this.state.skills || !this.state.traits ? (<React.Fragment/>) : (<Charabuild skills = {this.state.skills} traits = {this.state.traits}/>)}
+                        {(this.state.viewstate != 1) || !this.state.equipment ? (<React.Fragment/>) : (<CharaGear gear = {this.state.equipment}/>)}
+                        {(this.state.viewstate != 2) || !this.state.skills || !this.state.traits ? (<React.Fragment/>) : (<Charabuild skills = {this.state.skills} traits = {this.state.traits}/>)}
                     </div>
                 </div>
             </React.Fragment>);

@@ -12,7 +12,7 @@ const header =  <nav id="general_navbar" className="navbar navbar-expand-sm navb
                         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                             <div className="navbar-nav">
                             <Link to="/" ><li className="nav-link">Achievements</li></Link>
-                            <Link to="/account"><li className="nav-link">Account</li></Link>
+                            <Link to="/account/"><li className="nav-link">Account</li></Link>
                             <li className="nav-link">Events</li>
                             </div>
                         </div>

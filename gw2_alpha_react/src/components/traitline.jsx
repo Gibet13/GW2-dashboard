@@ -3,8 +3,6 @@ import '../assets/traitline.css'
 
 export function Traitline(props) {
 
-    console.log(props)
-
     return  <div className="traitline" id={props.line.name} style={{backgroundImage: `url(${props.line.background})`,
                                                                     backgroundPosition: 'bottom left'}}>
                 <div  className="traitline_icon">

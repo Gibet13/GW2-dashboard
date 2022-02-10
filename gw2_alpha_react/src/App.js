@@ -12,7 +12,7 @@ function App() {
                 {header}
                 <Routes>
                     <Route path='/' element={<AchievementsPage />}/>
-                    <Route path='/account' element={<AccountPage />}/>
+                    <Route path='/account/*' element={<AccountPage />}/>
                 </Routes>
             </div>
         </BrowserRouter>

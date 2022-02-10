@@ -9,10 +9,6 @@ export function SecToHours(value){
     return format;
 }
 
-export function ConvertDateFormat(date){
-
-}
-
 export function parse_attribute(gear) {
     var attributes = {
         'Power':0,
