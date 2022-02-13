@@ -7,7 +7,9 @@ body {
 #page_view {
     display: flex;
     flex-direction:row;
+    flex-wrap: wrap;
     margin: 1%;
+    flex:1;
 }
 
 #navigation_menu {
@@ -23,10 +25,14 @@ li {
     cursor: pointer;
 }
 
-#menu_content {
+#menu {
     flex: 0 1 auto;
     display: flex;
     flex-direction: column;
+}
+
+#menu_content{
+    flex: 1;
 }
 
 #menu_content img {

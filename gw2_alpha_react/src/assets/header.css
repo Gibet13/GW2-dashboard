@@ -1,3 +1,6 @@
 #general_navbar {
     background-color: crimson;
+    z-index: 7;
+    position: sticky;
+    top: 0;
 }

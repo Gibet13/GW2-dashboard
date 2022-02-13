@@ -1,5 +1,5 @@
 .item {
-    margin: 1%;
+    margin: .1rem;
 }
 
 .item img{
@@ -21,6 +21,10 @@
 
 .Rare {
     border:2px solid #b49b1e;
+}
+
+.Masterwork {
+    border: 2px solid #2dc50e;
 }
 
 .Fine {

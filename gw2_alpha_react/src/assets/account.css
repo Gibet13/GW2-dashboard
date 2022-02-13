@@ -1,13 +1,18 @@
 #account_view {
     display: flex;
     flex-direction: row;
-    margin: 1%
+    flex:1;
+    margin: 1%;
 }
 
 #menu {
     flex: 0 1 auto;
     display: flex;
     flex-direction: column;
+}
+
+.menu_content{
+    flex: 1;
 }
 
 #key_form {

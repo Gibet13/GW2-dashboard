@@ -1,0 +1,12 @@
+#inventory {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bag {
+    max-width: 60%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}

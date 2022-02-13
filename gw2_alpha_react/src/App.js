@@ -4,17 +4,19 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import AchievementsPage from './achievements';
 import AccountPage from './account';
 import header from './layouts/header';
+import Footer from './layouts/footer';
+
+import './assets/App.css'
 
 function App() {
     return(
         <BrowserRouter>
-            <div>
-                {header}
-                <Routes>
-                    <Route path='/' element={<AchievementsPage />}/>
-                    <Route path='/account/*' element={<AccountPage />}/>
-                </Routes>
-            </div>
+            {header}
+            <Routes>
+                <Route path='/' element={<AchievementsPage />}/>
+                <Route path='/account/*' element={<AccountPage />}/>
+            </Routes>
+            {Footer}
         </BrowserRouter>
     )
 }

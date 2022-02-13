@@ -3,8 +3,12 @@ import React, { Component } from 'react';
 import './assets/account.css'
 import Charabuild from './layouts/build';
 import CharaGear from './layouts/equipement';
+import Backstory from './layouts/Story';
+import Inventory from './layouts/inventory';
 
 import { SecToHours } from './helpers/utils.js'
+
+
 
 class AccountPage extends Component {
     state = {
@@ -14,6 +18,8 @@ class AccountPage extends Component {
         chara_list:null,
         character:null,
         equipment:null,
+        inventory:null,
+        backstory:null,
         skills:null,
         traits:null,
     }
@@ -43,7 +49,7 @@ class AccountPage extends Component {
     }
 
     async load_character(key, name) {
-        
+
         var response = await fetch(`https://api.guildwars2.com/v2/characters/${name}?access_token=${key}`)
         var result = await response.json()
             
@@ -96,8 +102,37 @@ class AccountPage extends Component {
         this.setState({traits:info})
     }
 
+    async inventoryInfo(bags) {
+        console.log(bags)
+        var ids = []
+        var info = []
+
+        for(let i = 0; i < bags.length; i++){
+            ids[i] = []
+            for(let y = 0; y < bags[i].inventory.length; y++){
+                if(bags[i].inventory[y]){
+                    ids[i].push(bags[i].inventory[y].id)
+                }
+                
+            }
+            var response = await fetch(`https://api.guildwars2.com/v2/items?ids=${ids[i].join(",")}`)
+            var data = await response.json()
+
+            info[i] = data    
+        }
+        this.setState({inventory:info})
+    }
+
+    async backstoryInfo(story) {
+
+        var response = await fetch(`https://api.guildwars2.com/v2/backstory/answers?ids=${story.join(",")}`)
+        var info = await response.json()
+        
+        this.setState({backstory:info})
+    }
+
     changeview(view) {
-        this.state.viewstate = view;
+        this.setState({viewstate: view})
     }
 
     render() {
@@ -111,14 +146,16 @@ class AccountPage extends Component {
                             <button className="btn btn-dark" onClick={() => this.verify_key()}>Submit</button>
                         </div>
                         <h3>Account</h3>
-                        <div>
-                            <div>Characters</div>
-                            <div id='chara_list'>
-                                {!this.state.chara_list ? (<React.Fragment/>):(this.state.chara_list.map(item => {return <li key={item} onClick={() => {this.load_character(this.state.api_key, item);this.changeview(null)}}>{item}</li>}))}
+                        <div className='menu_content'>
+                            <div>
+                                <div>Characters</div>
+                                <div id='chara_list'>
+                                    {!this.state.chara_list ? (<React.Fragment/>):(this.state.chara_list.map(item => {return <li key={item} onClick={() => {this.load_character(this.state.api_key, item);this.changeview(null)}}>{item}</li>}))}
+                                </div>
                             </div>
-                        </div>
                             
-                        <div>Bank</div>
+                            <div>Bank</div>
+                        </div>
                     </div>
                     <div id='character_sheet'>
                         {!this.state.character ? (<React.Fragment/>) : (
@@ -136,16 +173,18 @@ class AccountPage extends Component {
                                         <div id='chara_menu'>
                                             <li onClick={() => {this.equipmentInfo(this.state.character.equipment);this.changeview(1)}}>Equipment</li>
                                             <li onClick={() => {this.traitInfo(this.state.character.specializations);this.skillInfo(this.state.character.skills);this.changeview(2)}}>Build</li>
-                                            <li>Inventory</li>
-                                            <li>Backstory</li>
+                                            <li onClick={() => {this.inventoryInfo(this.state.character.bags);this.changeview(3)}}>Inventory</li>
+                                            <li onClick={() => {this.backstoryInfo(this.state.character.backstory);this.changeview(4)}}>Backstory</li>
                                         </div>
                                     </div>
                                 </div>
                                 <hr></hr>
                             </React.Fragment>
                             )}
-                        {(this.state.viewstate != 1) || !this.state.equipment ? (<React.Fragment/>) : (<CharaGear gear = {this.state.equipment}/>)}
-                        {(this.state.viewstate != 2) || !this.state.skills || !this.state.traits ? (<React.Fragment/>) : (<Charabuild skills = {this.state.skills} traits = {this.state.traits}/>)}
+                        {(this.state.viewstate !== 1) || !this.state.equipment ? (<React.Fragment/>) : (<CharaGear gear = {this.state.equipment}/>)}
+                        {(this.state.viewstate !== 2) || !this.state.skills || !this.state.traits ? (<React.Fragment/>) : (<Charabuild skills = {this.state.skills} traits = {this.state.traits}/>)}
+                        {(this.state.viewstate !== 3) || !this.state.inventory ? (<React.Fragment/>) : (<Inventory bags = {this.state.inventory}/>)}
+                        {(this.state.viewstate !== 4) || !this.state.backstory ? (<React.Fragment/>) : (<Backstory journal = {this.state.backstory}/>)}
                     </div>
                 </div>
             </React.Fragment>);

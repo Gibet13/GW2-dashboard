@@ -98,7 +98,7 @@ class AchievementsPage extends React.Component {
         return (
             <React.Fragment>
                 <div id='page_view'>
-                    <div id='menu_content'>
+                    <div id='menu'>
                         <h3>Navigation</h3>
                         <hr></hr>
                         {
@@ -132,9 +132,7 @@ class AchievementsPage extends React.Component {
                                 </div>
                             </nav>
                         </div>
-                        <div id='achievements' className="accordion accordion-flush">
-                                {!this.state.achievements_info ?(<React.Fragment></React.Fragment>):(<Achievements ach_list = {this.state.achievements_info}/>)}
-                        </div>
+                        {!this.state.achievements_info ?(<React.Fragment></React.Fragment>):(<Achievements ach_list = {this.state.achievements_info}/>)}
                     </div>
                 </div>
             </React.Fragment>
