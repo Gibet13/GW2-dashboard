@@ -1,6 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
 import '../assets/skill.css'
 
-export function Skill(props){
-    return <div title={props.skill.name} className='item'><img className={props.skill.type} src={props.skill.icon} alt="" /></div>
+class Skill extends Component {
+
+    render() { 
+        return  (<div title={this.props.skill.name} className='item'>
+                    <img className={this.props.skill.type} src={this.props.skill.icon} alt="" />
+                </div>);
+    }
 }
+
+export default Skill;

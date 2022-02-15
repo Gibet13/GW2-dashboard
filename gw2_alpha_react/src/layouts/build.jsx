@@ -2,8 +2,8 @@ import React from 'react';
 
 import '../assets/build.css'
 
-import { Skill } from '../components/skill';
-import { Traitline } from '../components/traitline';
+import Skill from '../components/skill';
+import Traitline from '../components/traitline';
 
 function Charabuild(build) {
 

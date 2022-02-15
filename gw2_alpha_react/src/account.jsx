@@ -103,7 +103,7 @@ class AccountPage extends Component {
     }
 
     async inventoryInfo(bags) {
-        console.log(bags)
+        
         var ids = []
         var info = []
 
@@ -112,13 +112,15 @@ class AccountPage extends Component {
             for(let y = 0; y < bags[i].inventory.length; y++){
                 if(bags[i].inventory[y]){
                     ids[i].push(bags[i].inventory[y].id)
-                }
-                
+                }    
             }
-            var response = await fetch(`https://api.guildwars2.com/v2/items?ids=${ids[i].join(",")}`)
-            var data = await response.json()
-
-            info[i] = data    
+            
+            if(ids[i].length !== 0){
+                var response = await fetch(`https://api.guildwars2.com/v2/items?ids=${ids[i].join(",")}`)
+                var data = await response.json()
+                
+                info[i] = data
+            }
         }
         this.setState({inventory:info})
     }
@@ -158,7 +160,7 @@ class AccountPage extends Component {
                         </div>
                     </div>
                     <div id='character_sheet'>
-                        {!this.state.character ? (<React.Fragment/>) : (
+                        {this.state.character &&
                             <React.Fragment>
                                 <div id='chara_header'>
                                     <div><h2>{this.state.character.name}</h2></div>
@@ -180,11 +182,11 @@ class AccountPage extends Component {
                                 </div>
                                 <hr></hr>
                             </React.Fragment>
-                            )}
-                        {(this.state.viewstate !== 1) || !this.state.equipment ? (<React.Fragment/>) : (<CharaGear gear = {this.state.equipment}/>)}
+                            }
+                        {(this.state.viewstate !== 1) || !this.state.equipment ? (<React.Fragment/>):(<CharaGear gear = {this.state.equipment}/>)}
                         {(this.state.viewstate !== 2) || !this.state.skills || !this.state.traits ? (<React.Fragment/>) : (<Charabuild skills = {this.state.skills} traits = {this.state.traits}/>)}
-                        {(this.state.viewstate !== 3) || !this.state.inventory ? (<React.Fragment/>) : (<Inventory bags = {this.state.inventory}/>)}
-                        {(this.state.viewstate !== 4) || !this.state.backstory ? (<React.Fragment/>) : (<Backstory journal = {this.state.backstory}/>)}
+                        {(this.state.viewstate !== 3) || !this.state.inventory ? (<React.Fragment/>): (<Inventory bags = {this.state.inventory}/>)}
+                        {(this.state.viewstate !== 4) || !this.state.backstory  ? (<React.Fragment/>):(<Backstory journal = {this.state.backstory}/>)}
                     </div>
                 </div>
             </React.Fragment>);

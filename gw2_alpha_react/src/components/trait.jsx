@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { Component } from 'react';
 import '../assets/item.css'
 
-export function Trait(props){
-    
-    return <div title={props.trait.name} className='item'><img className='trait' src={props.trait.icon} alt="" /></div>
+class Trait extends Component {
+
+    render() {
+         
+        return  (<div title={this.props.trait.name} className='item'>
+                    <img className='trait' src={this.props.trait.icon} alt="" />
+                </div>);
+    }
 }
+
+export default Trait;

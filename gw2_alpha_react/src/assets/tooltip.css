@@ -1,0 +1,41 @@
+.tool_tip {
+    position: fixed;
+    display: flex;
+    left: 5%;
+    top:35%;
+    flex-direction: column;
+    padding: .5rem;
+    min-height: 300px;
+    width: 300px;
+    background-color: rgba(0, 0, 0, 0.836);
+    border: 2px solid #ffffffc4;
+}
+
+.tool_tip img{
+    margin-right: 1rem;
+}
+
+.tooltip_header {
+    display: flex;
+    align-items: center;
+}
+
+.tooltip_stats {
+    display: flex;
+}
+.tooltip_stats  div{
+    flex: 1;
+}
+
+.tooltip_description {
+    flex: 1 1 auto;
+}
+
+.tooltip_description div{
+    display: flex;
+    flex-direction: column;
+}
+
+.tooltip_label {
+    display: flex;
+}

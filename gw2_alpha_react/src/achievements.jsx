@@ -1,7 +1,6 @@
 import React from 'react';
 
 import './assets/achievements.css';
-import header from './layouts/header.jsx';
 import Achievements from './layouts/achievementsView';
 
 
@@ -28,10 +27,8 @@ class AchievementsPage extends React.Component {
     }
 
     async fetchgroupsinfo(ids) {
-        
-        var id_list = ids.join(',')
  
-        fetch(`https://api.guildwars2.com/v2/achievements/groups?ids=${id_list}`)
+        fetch(`https://api.guildwars2.com/v2/achievements/groups?ids=${ids.join(',')}`)
         .then(response => response.json())
         .then(groups => {
                 
@@ -42,12 +39,10 @@ class AchievementsPage extends React.Component {
     }
 
     async fetchgroup (ids) {
-
         
         if(ids.length != 0) {
-            var id_list = ids.join(',')
             
-            fetch(`https://api.guildwars2.com/v2/achievements/categories?ids=${id_list}`)
+            fetch(`https://api.guildwars2.com/v2/achievements/categories?ids=${ids.join(',')}`)
             .then(response => response.json())
             .then(group => {
                 
@@ -59,10 +54,8 @@ class AchievementsPage extends React.Component {
     }
 
     async fetchcategory(ids) {
-        
-        var id_list = ids.join(',');
             
-        fetch(`https://api.guildwars2.com/v2/achievements?ids=${id_list}`)
+        fetch(`https://api.guildwars2.com/v2/achievements?ids=${ids.join(',')}`)
         .then(response => response.json())
         .then(category => {
                 
