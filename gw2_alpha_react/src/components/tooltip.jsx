@@ -6,7 +6,7 @@ function Tooltip(props) {
     return  <div className='tool_tip'>
                 <div className='tooltip_header'>
                     <img src={props.focus.item.icon} alt="" />
-                    <div>{props.focus.item.name}</div>
+                    <div>{props.focus.details && <React.Fragment>{props.focus.details.count > 1 && <h6>{props.focus.details.count}</h6>}</React.Fragment>}{props.focus.item.name}</div>
                 </div>
                 <hr />
                 {props.focus.item.details && 
@@ -19,9 +19,18 @@ function Tooltip(props) {
                 </div>}
                 <div className='tooltip_description'>
                     <div dangerouslySetInnerHTML={{__html: props.focus.item.description}}/>
-                </div>
+                </div><br />
                 <div className='tooltip_label'>
-                    <div>{props.focus.item.rarity}</div> - <div>{props.focus.item.type}</div>
+                    
+                    <div>
+                        <div>{props.focus.item.rarity}</div> - <div>{props.focus.item.type}</div>
+                    </div>
+                    <React.Fragment>{props.focus.details && <React.Fragment>
+                        {props.focus.details.binding  && <div>Bound to {!props.focus.details.bound_to ? (<React.Fragment>{props.focus.details.binding}</React.Fragment>)
+                            :
+                            (<React.Fragment>{props.focus.details.bound_to}</React.Fragment>)}</div>}
+                        </React.Fragment>}
+                    </React.Fragment>
                 </div>
             </div>
 }

@@ -27,10 +27,16 @@ class Item extends Component {
       }
 
     render() { 
-        return  (<div title={this.props.item.name} className='item' onMouseOver={this.handleMouseOver} onMouseOut={this.handleMouseOut}>
-                    <img className={this.props.item.rarity} src={this.props.item.icon} alt="" />
-                    {this.state.isHovering && <Tooltip focus={this.props}/>}
-                </div>);
+        return  (<React.Fragment>
+                  {this.props.item ? 
+                  (<div className='item' onMouseOver={this.handleMouseOver} onMouseOut={this.handleMouseOut}>
+                      <img className={this.props.item.rarity} src={this.props.item.icon} alt="" />
+                      {this.state.isHovering && <Tooltip focus={this.props} details/>}
+                  </div>)
+                  :
+                  (<div title='Empty' className='icon'></div>)}
+                </React.Fragment>
+                );
     }
 }
  

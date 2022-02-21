@@ -22,6 +22,7 @@ class AccountPage extends Component {
         backstory:null,
         skills:null,
         traits:null,
+        bank:null
     }
 
     async verify_key() {
@@ -46,6 +47,14 @@ class AccountPage extends Component {
         var result = await response.json()
 
         this.setState({chara_list: result})       
+    }
+
+    async load_bank(key) {
+
+        var response = await fetch(`https://api.guildwars2.com/v2/account/bank?access_token=${key}`)
+        var result = await response.json()
+
+        this.setState({bank: result})
     }
 
     async load_character(key, name) {
@@ -109,6 +118,9 @@ class AccountPage extends Component {
 
         for(let i = 0; i < bags.length; i++){
             ids[i] = []
+            info[i] = []
+            var a = 0
+
             for(let y = 0; y < bags[i].inventory.length; y++){
                 if(bags[i].inventory[y]){
                     ids[i].push(bags[i].inventory[y].id)
@@ -119,7 +131,19 @@ class AccountPage extends Component {
                 var response = await fetch(`https://api.guildwars2.com/v2/items?ids=${ids[i].join(",")}`)
                 var data = await response.json()
                 
-                info[i] = data
+                for (let x = 0 ; x < bags[i].inventory.length; x++){
+                    if(bags[i].inventory[x]){
+                        
+                        info[i][x] = data[a]
+                        a++
+                    }
+                    else{
+                    info[i][x] = bags[i].inventory[x]
+                    }
+                }
+            }
+            else{
+                info[i] = bags[i].inventory
             }
         }
         this.setState({inventory:info})
@@ -156,7 +180,7 @@ class AccountPage extends Component {
                                 </div>
                             </div>
                             
-                            <div>Bank</div>
+                            {this.state.valid_key && <div onClick={() => this.load_bank(this.state.api_key)}>Bank</div>}
                         </div>
                     </div>
                     <div id='character_sheet'>
@@ -185,7 +209,7 @@ class AccountPage extends Component {
                             }
                         {(this.state.viewstate !== 1) || !this.state.equipment ? (<React.Fragment/>):(<CharaGear gear = {this.state.equipment}/>)}
                         {(this.state.viewstate !== 2) || !this.state.skills || !this.state.traits ? (<React.Fragment/>) : (<Charabuild skills = {this.state.skills} traits = {this.state.traits}/>)}
-                        {(this.state.viewstate !== 3) || !this.state.inventory ? (<React.Fragment/>): (<Inventory bags = {this.state.inventory}/>)}
+                        {(this.state.viewstate !== 3) || !this.state.inventory ? (<React.Fragment/>): (<Inventory bags = {this.state.inventory} info = {this.state.character.bags}/>)}
                         {(this.state.viewstate !== 4) || !this.state.backstory  ? (<React.Fragment/>):(<Backstory journal = {this.state.backstory}/>)}
                     </div>
                 </div>
