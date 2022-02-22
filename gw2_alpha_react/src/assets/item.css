@@ -1,12 +1,21 @@
 .item {
     margin: .1rem;
+    display: flex;
+    flex-direction: row-reverse;
     
 }
 
 .item img{
-    position: relative;
     height: 64px;
     width: 64px;
+}
+
+.item .count {
+    position: absolute;
+    color: white;
+    text-shadow: 0 0 3px black, 0 0 3px black, 0 0 3px black;
+    margin-right: 5px;
+    font-size: 13px;
 }
 
 .Legendary {
