@@ -123,6 +123,7 @@ class AccountPage extends Component {
             ids[i] = []
             info[i] = []
             var a = 0
+            var duplicate = false
 
             for(let y = 0; y < bags[i].inventory.length; y++){
                 if(bags[i].inventory[y]){
@@ -137,8 +138,22 @@ class AccountPage extends Component {
                 for (let x = 0 ; x < bags[i].inventory.length; x++){
                     if(bags[i].inventory[x]){
                         
-                        info[i][x] = data[a]
-                        a++
+                        for (let b = 0 ; b < x; b++){
+                            
+                            duplicate = false
+                            if(bags[i].inventory[b]){
+                                if(info[i][b].id === bags[i].inventory[x].id){
+
+                                    duplicate = true
+                                    info[i][x] = info[i][b]
+                                    break
+                                }
+                            }
+                        }
+                        if(!duplicate){
+                            info[i][x] = data[a]
+                            a++
+                        }  
                     }
                     else{
                     info[i][x] = bags[i].inventory[x]

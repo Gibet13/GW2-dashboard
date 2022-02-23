@@ -5,7 +5,7 @@ class Trait extends Component {
 
     render() {
          
-        return  (<div title={this.props.trait.name} className='item'>
+        return  (<div title={this.props.trait.name} className='trait'>
                     <img className='trait' src={this.props.trait.icon} alt="" />
                 </div>);
     }

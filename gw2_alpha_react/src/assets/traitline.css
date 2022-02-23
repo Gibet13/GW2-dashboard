@@ -20,6 +20,12 @@
     flex-direction: column;
 }
 
+.trait{
+    margin: 1%;
+    height: 40px;
+    width: 40px;
+}
+
 .traitline_icon {
     display: flex;
     justify-content: center;
@@ -33,12 +39,10 @@
     margin: 1%;
     height: 40px;
     width: 40px;
-    background-color: rgb(160, 119, 119);
 }
 
 .major_trait_icon {
     margin: 2%;
     height: 40px;
     width: 40px;
-    background-color: rgb(160, 119, 119);
 }
