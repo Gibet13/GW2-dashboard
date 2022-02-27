@@ -2,7 +2,7 @@ import React from 'react';
 
 import '../assets/tooltip.css'
 
-function Tooltip(props) {
+export function Tooltip(props) {
     return  <div className='tool_tip'>
                 <div className='tooltip_header'>
                     <img src={props.focus.item.icon} alt="" />
@@ -35,4 +35,18 @@ function Tooltip(props) {
             </div>
 }
 
-export default Tooltip
+export function SkillTooltip(props){
+    return  <div className='tool_tip'>
+                <div className='tooltip_header'>{props.focus.skill.name}</div>
+                <hr />
+                <div className='tooltip_description' dangerouslySetInnerHTML={{__html: props.focus.skill.description}}/>
+            </div>
+}
+
+export function TraitTooltip(props){
+    return  <div className='tool_tip'>
+                <div className='tooltip_header'>{props.focus.trait.name}</div>
+                <hr />
+                <div className='tooltip_description' dangerouslySetInnerHTML={{__html: props.focus.trait.description}}/>
+            </div>
+}

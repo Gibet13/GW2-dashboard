@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../assets/item.css'
 
-import Tooltip from './tooltip';
+import {Tooltip} from './tooltip';
 
 class Item extends Component {
 
@@ -31,7 +31,7 @@ class Item extends Component {
                   {this.props.item ? 
                   (<div className='item' onMouseOver={this.handleMouseOver} onMouseOut={this.handleMouseOut}>
                       <img className={this.props.item.rarity} src={this.props.item.icon} alt="" />
-                      {this.state.isHovering && <Tooltip focus={this.props} details/>}
+                      {this.state.isHovering && <Tooltip focus={this.props}/>}
                       {this.props.details && <React.Fragment>{this.props.details.count > 1 && <span className='count'>{this.props.details.count}</span>}</React.Fragment>}
                   </div>)
                   :

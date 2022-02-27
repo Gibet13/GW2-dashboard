@@ -9,19 +9,18 @@ function Charabuild(build) {
 
     return  <div id="build">
                 <h2>Build</h2>
-                <div id="skill-bars">
-                    <div className="skill_bar">
-                        
-                        <div className="off_hand">
-                            <Skill skill = {build.skills.Heal0}/>
-                            <Skill skill = {build.skills.Utility1}/>
-                            <Skill skill = {build.skills.Utility2}/>
-                            <Skill skill = {build.skills.Utility3}/>
-                            <Skill skill = {build.skills.Elite4}/>
-                        </div>
-                    </div>
                 
+                <div className="skill_bar">
+                    <div>Utility Skills:</div>
+                    <div className="off_hand">
+                        <Skill skill = {build.skills.Heal0}/>
+                        <Skill skill = {build.skills.Utility1}/>
+                        <Skill skill = {build.skills.Utility2}/>
+                        <Skill skill = {build.skills.Utility3}/>
+                        <Skill skill = {build.skills.Elite4}/>
+                    </div>
                 </div>
+                
                 <div id="trait-lines">
                     <Traitline line = {build.traits[0]}/>
                     <Traitline line = {build.traits[1]}/>
