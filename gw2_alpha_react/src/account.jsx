@@ -7,6 +7,7 @@ import Backstory from './layouts/Story';
 import Inventory from './layouts/inventory';
 
 import { SecToHours } from './helpers/utils.js'
+import Wallet from './layouts/wallet';
 
 
 
@@ -23,7 +24,9 @@ class AccountPage extends Component {
         skills:null,
         traits:null,
         bank_item:null,
-        bank:[]
+        bank:[],
+        wallet:null,
+        currencies:null
     }
 
     async verify_key() {
@@ -40,6 +43,7 @@ class AccountPage extends Component {
             this.state.valid_key = true;
             this.load_characters(key)
             this.load_bank(key)
+            this.load_wallet(key)
         }
     }
 
@@ -59,12 +63,32 @@ class AccountPage extends Component {
         this.state.bank.push({inventory:result})
     }
 
+    async load_wallet(key) {
+
+        var response = await fetch(`https://api.guildwars2.com/v2/account/wallet?access_token=${key}`)
+        var result = await response.json()
+
+        this.state.wallet = result
+    }
+
     async load_character(key, name) {
 
         var response = await fetch(`https://api.guildwars2.com/v2/characters/${name}?access_token=${key}`)
         var result = await response.json()
             
         this.setState({character: result})
+    }
+
+    async walletInfo(wallet){
+        var ids = []
+        wallet.forEach(element => {
+            ids.push(element.id)
+        })
+
+        var response = await fetch(`https://api.guildwars2.com/v2/currencies?ids=${ids.join(",")}`)
+        var data = await response.json()
+
+        this.setState({currencies:data})
     }
 
     async equipmentInfo(equipment) {
@@ -196,7 +220,7 @@ class AccountPage extends Component {
                             <button className="btn btn-dark" onClick={() => this.verify_key()}>Submit</button>
                         </div>
                         <h3>Account</h3>
-                        <div className='menu_content'>
+                        {this.state.valid_key && <div className='menu_content'>
                             <div>
                                 <div>Characters</div>
                                 <div id='chara_list'>
@@ -204,8 +228,9 @@ class AccountPage extends Component {
                                 </div>
                             </div>
                             
-                            {this.state.valid_key && <div onClick={() => {this.changeview(5);this.inventoryInfo(this.state.bank, 'bank')}}>Bank</div>}
-                        </div>
+                            <div onClick={() => {this.changeview(5);this.inventoryInfo(this.state.bank, 'bank')}}>Bank</div>
+                            <div onClick={() => {this.changeview(6);this.walletInfo(this.state.wallet)}}>Wallet</div>
+                        </div>}
                     </div>
                     {this.state.viewstate < 5 && <div id='character_sheet'>
                         {this.state.character &&
@@ -241,6 +266,9 @@ class AccountPage extends Component {
                         <h2>Bank</h2>
                         <Inventory bags = {this.state.bank_item} info = {this.state.bank}/>
                     </div>)}
+                    {(this.state.viewstate !== 6) || !this.state.currencies ? (<React.Fragment/>): (
+                        <Wallet wallet = {this.state.wallet} currencies = {this.state.currencies}/>
+                        )}
                 </div>
             </React.Fragment>);
     }

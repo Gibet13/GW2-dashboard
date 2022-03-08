@@ -1,0 +1,12 @@
+#wallet {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 80vh;
+}
+
+#wallet img{
+    height: 1.4rem;
+    width: 1.4rem;
+    margin-right: 0.5rem;
+}
