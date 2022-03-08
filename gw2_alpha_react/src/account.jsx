@@ -31,10 +31,12 @@ class AccountPage extends Component {
 
     async verify_key() {
 
+        // envoie un requete avec la clé rentré par l'utilisateur
         let key = document.getElementById('api-key').value;
         var response = await fetch(`https://api.guildwars2.com/v2/account?access_token=${key}`)
         var result = await response.json()
-            
+        
+        //si la clé est invalide un message est affiché
         if(result.text === 'Invalid access token') {
             alert('invalid api key');
         }
@@ -49,6 +51,7 @@ class AccountPage extends Component {
 
     async load_characters(key) {
         
+        //requete renvoyant uniquement les noms des personnages du compte
         var response = await fetch(`https://api.guildwars2.com/v2/characters?access_token=${key}`)
         var result = await response.json()
 
@@ -57,14 +60,17 @@ class AccountPage extends Component {
 
     async load_bank(key) {
         
+        // requete retournant les ids et compte des item contenu dans la banque du compte
         var response = await fetch(`https://api.guildwars2.com/v2/account/bank?access_token=${key}`)
         var result = await response.json()
 
+        // afin de pouvoir utiliser la fonction inventoryInfo la variable bank est formaté comme un inventaire 
         this.state.bank.push({inventory:result})
     }
 
     async load_wallet(key) {
 
+        //requete retournant le compte des differente monnaie comptenu dans le porte-feuille
         var response = await fetch(`https://api.guildwars2.com/v2/account/wallet?access_token=${key}`)
         var result = await response.json()
 
@@ -73,6 +79,7 @@ class AccountPage extends Component {
 
     async load_character(key, name) {
 
+        // requete retournant les info détaillé d'un personnage
         var response = await fetch(`https://api.guildwars2.com/v2/characters/${name}?access_token=${key}`)
         var result = await response.json()
             
@@ -80,11 +87,14 @@ class AccountPage extends Component {
     }
 
     async walletInfo(wallet){
+
+        // place les ids des differente monnaies dans une liste
         var ids = []
         wallet.forEach(element => {
             ids.push(element.id)
         })
 
+        //requete retournant les détails de chaque monnaie
         var response = await fetch(`https://api.guildwars2.com/v2/currencies?ids=${ids.join(",")}`)
         var data = await response.json()
 
@@ -96,13 +106,16 @@ class AccountPage extends Component {
         var ids = []
         var info = []
 
+        // place les ids dans une liste
         equipment.forEach(element => {
                 ids.push(element.id)
-            });
+        });
         
+        // requete retournant les infos de chaque items
         var response = await fetch(`https://api.guildwars2.com/v2/items?ids=${ids.join(",")}`)
         var data = await response.json()
 
+        // ajoute un label a chaque piece d'équipement
         for(var i = 0; i < ids.length; i++){
 
             info[equipment[i].slot] = data[i]
@@ -113,12 +126,15 @@ class AccountPage extends Component {
 
     async skillInfo(skills) {
 
+        // place les ids dans une liste
         var ids = [skills.pve.heal, skills.pve.utilities[0], skills.pve.utilities[1], skills.pve.utilities[2],skills.pve.elite]
         var info = []
 
+        // requete retournant les infos de chaque skill
         var response = await fetch(`https://api.guildwars2.com/v2/skills?ids=${ids.join(",")}`)
         var data = await response.json()
         
+        // ajoute un label a chaque skill
         for(var i = 0; i < ids.length; i++){
 
             info[`${data[i].type}${i}`] = data[i]
@@ -129,8 +145,10 @@ class AccountPage extends Component {
 
     async traitInfo(traits) {
         
+        // place les ids dans une liste
         var ids = [traits.pve[0].id,traits.pve[1].id,traits.pve[2].id]
 
+        // requete retournant les infos de chaque trait
         var response = await fetch(`https://api.guildwars2.com/v2/specializations?ids=${ids.join(",")}`)
         var info = await response.json()
         
@@ -142,30 +160,36 @@ class AccountPage extends Component {
         
         var ids = []
         var info = []
-
+        
+        //pour chaque sac dans l'inventaire
         for(let i = 0; i < bags.length; i++){
             ids[i] = []
             info[i] = []
             var a = 0
             var duplicate = false
 
+            // place les ids dans une liste
             for(let y = 0; y < bags[i].inventory.length; y++){
                 if(bags[i].inventory[y]){
                     ids[i].push(bags[i].inventory[y].id)
                 }    
             }
             
+            // si le sac n'est pas vide
             if(ids[i].length !== 0){
+                // requete retournant les infos de chaque items
                 var response = await fetch(`https://api.guildwars2.com/v2/items?ids=${ids[i].join(",")}`)
                 var data = await response.json()
                 
+                // pour chaque item non nul dans le sac 
                 for (let x = 0 ; x < bags[i].inventory.length; x++){
                     if(bags[i].inventory[x]){
-                        
+                        //on verifie si l'item existe en double dans les item le precedant dans le sac
                         for (let b = 0 ; b < x; b++){
                             
                             duplicate = false
                             if(bags[i].inventory[b]){
+                                //si un double est trouvé dans le sac il est rajouté dans le sac a son emplacement dans le sac
                                 if(info[i][b].id === bags[i].inventory[x].id){
 
                                     duplicate = true
@@ -174,16 +198,19 @@ class AccountPage extends Component {
                                 }
                             }
                         }
+                        //si aucun duplicat n'est trouvé on passe a l'item suivants
                         if(!duplicate){
                             info[i][x] = data[a]
                             a++
                         }  
                     }
+                    //si l'item est nul on l'ajoute au sac
                     else{
                     info[i][x] = bags[i].inventory[x]
                     }
                 }
             }
+            //si le sac est vide pas de requete necessaire
             else{
                 info[i] = bags[i].inventory
             }
@@ -199,6 +226,7 @@ class AccountPage extends Component {
 
     async backstoryInfo(story) {
 
+        // requete retournant les infos de chaque backstory
         var response = await fetch(`https://api.guildwars2.com/v2/backstory/answers?ids=${story.join(",")}`)
         var info = await response.json()
         
