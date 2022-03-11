@@ -4,17 +4,17 @@ import '../assets/wallet.css'
 
 function Wallet(props){
 
-    return  <>
+    return  <div id='wallet'>
                 <h3>Wallet</h3>
-                <br />
-                <div id='wallet'>
+                
+                <div id='currencies'>
                     {props.wallet.map((currency, index) => {
-                        return <div>
-                            <img src={props.currencies[index].icon} alt="" />
-                            {`${currency.value} ${props.currencies[index].name}`}
-                            </div>
+                        return  <div title={props.currencies[index].description}>
+                                    <img src={props.currencies[index].icon} alt="" />
+                                    {`${currency.value} ${props.currencies[index].name}`}
+                                </div>
                     })}
                 </div>
-            </>
+            </div>
 }
 export default Wallet
