@@ -15,6 +15,56 @@ class AchievementsPage extends React.Component {
         achievements_info:null
     }
 
+    render() {
+
+        if(!this.state.groups_info){
+            this.fetchgroupsinfo(this.state.groups_ids)
+        }
+
+        return (
+            <React.Fragment>
+                <div id='page_view'>
+                    <div id='menu'>
+                        <h3>Navigation</h3>
+                        <hr></hr>
+                        {
+                            this.state.loading_groups || !this.state.groups_info ? (<div>Loading...</div>)
+                                 : 
+                                (<div id="menu_content">
+                                    {this.state.groups_info.map(item => { return <li key={item.id} title={item.description} onClick={() => {this.fetchgroup(item.categories); this.showGroup();this.changeLabel(item.name)}}>{item.name}</li>})}
+                                </div>
+                            )
+                        }
+                    </div>
+                    <div id='content'>
+                        <div id='categories'>
+                            <nav  className="navbar navbar-dark">
+                                <div className="container-fluid">
+                                    <a className="navbar-brand" href="#">{this.state.currentview ? (<div>{this.state.currentview}</div>):(<React.Fragment></React.Fragment>)}</a>
+                                    <button id='group_toggle' className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#CATNav" aria-controls="CATNav" aria-expanded="false" aria-label="Toggle navigation">
+                                        <span className="navbar-toggler-icon"></span>
+                                    </button>
+                                    <div className="collapse navbar-collapse" id="CATNav">
+                                        <ul id="cat_navbar" className="navbar-nav">
+                                            {this.state.loading_categories || !this.state.categories_info ?
+                                                (<div>Select an achievement group</div>)
+                                                 :
+                                                (<div id="menu_content">
+                                                    {this.state.categories_info.map(item => { return <li key={item.id} onClick={() => {this.fetchcategory(item.achievements); this.hideGroup(); this.changeLabel(item.name)}}><img src={item.icon}/>{item.name}</li>})}
+                                                </div>)
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                            </nav>
+                        </div>
+                        {!this.state.achievements_info ?(<React.Fragment></React.Fragment>):(<Achievements ach_list = {this.state.achievements_info}/>)}
+                    </div>
+                </div>
+            </React.Fragment>
+        );
+    }
+
     async componentDidMount () {
         
         fetch("https://api.guildwars2.com/v2/achievements/groups")
@@ -80,56 +130,6 @@ class AchievementsPage extends React.Component {
         if (button.getAttribute('aria-expanded') === 'true') {
                 button.click()
         }
-    }
-
-    render() {
-
-        if(!this.state.groups_info){
-            this.fetchgroupsinfo(this.state.groups_ids)
-        }
-
-        return (
-            <React.Fragment>
-                <div id='page_view'>
-                    <div id='menu'>
-                        <h3>Navigation</h3>
-                        <hr></hr>
-                        {
-                            this.state.loading_groups || !this.state.groups_info ? (<div>Loading...</div>)
-                                 : 
-                                (<div id="menu_content">
-                                    {this.state.groups_info.map(item => { return <li key={item.id} title={item.description} onClick={() => {this.fetchgroup(item.categories); this.showGroup();this.changeLabel(item.name)}}>{item.name}</li>})}
-                                </div>
-                            )
-                        }
-                    </div>
-                    <div id='content'>
-                        <div id='categories'>
-                            <nav  className="navbar navbar-dark">
-                                <div className="container-fluid">
-                                    <a className="navbar-brand" href="#">{this.state.currentview ? (<div>{this.state.currentview}</div>):(<React.Fragment></React.Fragment>)}</a>
-                                    <button id='group_toggle' className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#CATNav" aria-controls="CATNav" aria-expanded="false" aria-label="Toggle navigation">
-                                        <span className="navbar-toggler-icon"></span>
-                                    </button>
-                                    <div className="collapse navbar-collapse" id="CATNav">
-                                        <ul id="cat_navbar" className="navbar-nav">
-                                            {this.state.loading_categories || !this.state.categories_info ?
-                                                (<div>Select an achievement group</div>)
-                                                 :
-                                                (<div id="menu_content">
-                                                    {this.state.categories_info.map(item => { return <li key={item.id} onClick={() => {this.fetchcategory(item.achievements); this.hideGroup(); this.changeLabel(item.name)}}><img src={item.icon}/>{item.name}</li>})}
-                                                </div>)
-                                            }
-                                        </ul>
-                                    </div>
-                                </div>
-                            </nav>
-                        </div>
-                        {!this.state.achievements_info ?(<React.Fragment></React.Fragment>):(<Achievements ach_list = {this.state.achievements_info}/>)}
-                    </div>
-                </div>
-            </React.Fragment>
-        );
     }
 }
  

@@ -29,6 +29,70 @@ class AccountPage extends Component {
         currencies:null
     }
 
+    render() {
+
+        return (
+            <React.Fragment>
+                <div id='account_view'>
+                    <div id='menu'>
+                        <div id='key_form'>
+                            <input id='api-key' type="text" placeholder='API key'/>
+                            <button className="btn btn-dark" onClick={() => this.verify_key()}>Submit</button>
+                        </div>
+                        <h3>Account</h3>
+                        {this.state.valid_key && <div className='menu_content'>
+                            <div>
+                                <div>Characters</div>
+                                <div id='chara_list'>
+                                    {!this.state.chara_list ? (<React.Fragment/>):(this.state.chara_list.map(item => {return <li key={item} onClick={() => {this.load_character(this.state.api_key, item);this.changeview(null)}}>{item}</li>}))}
+                                </div>
+                            </div>
+                            
+                            <div onClick={() => {this.changeview(5);this.inventoryInfo(this.state.bank, 'bank')}}>Bank</div>
+                            <div onClick={() => {this.changeview(6);this.walletInfo(this.state.wallet)}}>Wallet</div>
+                        </div>}
+                    </div>
+                    {this.state.viewstate < 5 && <div id='character_sheet'>
+                        {this.state.character &&
+                            <React.Fragment>
+                                <div id='chara_header'>
+                                    <div><h2>{this.state.character.name}</h2></div>
+                                    <div id='chara_detail'>
+                                        <div id='chara_info'>
+                                            <div>Race: {this.state.character.race}</div>
+                                            <div>Profession: {this.state.character.profession}</div>
+                                            <div>Level: {this.state.character.level}</div>
+                                            <div>Playtime: {SecToHours(this.state.character.age)}</div>
+                                            <div>Created: {new Date(this.state.character.created).toLocaleString()}</div>
+                                        </div>
+                                        <div id='chara_menu'>
+                                            <li onClick={() => {this.equipmentInfo(this.state.character.equipment);this.changeview(1)}}>Equipment</li>
+                                            <li onClick={() => {this.traitInfo(this.state.character.specializations);this.skillInfo(this.state.character.skills);this.changeview(2)}}>Build</li>
+                                            <li onClick={() => {this.inventoryInfo(this.state.character.bags);this.changeview(3)}}>Inventory</li>
+                                            <li onClick={() => {this.backstoryInfo(this.state.character.backstory);this.changeview(4)}}>Backstory</li>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr></hr>
+                            </React.Fragment>
+                            }
+                        {(this.state.viewstate !== 1) || !this.state.equipment ? (<React.Fragment/>):(<CharaGear gear = {this.state.equipment}/>)}
+                        {(this.state.viewstate !== 2) || !this.state.skills || !this.state.traits ? (<React.Fragment/>) : (<Charabuild skills = {this.state.skills} traits = {this.state.traits}/>)}
+                        {(this.state.viewstate !== 3) || !this.state.inventory ? (<React.Fragment/>): (<Inventory bags = {this.state.inventory} info = {this.state.character.bags}/>)}
+                        {(this.state.viewstate !== 4) || !this.state.backstory  ? (<React.Fragment/>):(<Backstory journal = {this.state.backstory}/>)}
+                    </div>}
+                    {(this.state.viewstate !== 5) || !this.state.bank_item ? (<React.Fragment/>): (
+                    <div className='Bank'>
+                        <h2>Bank</h2>
+                        <Inventory bags = {this.state.bank_item} info = {this.state.bank}/>
+                    </div>)}
+                    {(this.state.viewstate !== 6) || !this.state.currencies ? (<React.Fragment/>): (
+                        <Wallet wallet = {this.state.wallet} currencies = {this.state.currencies}/>
+                        )}
+                </div>
+            </React.Fragment>);
+    }
+
     async verify_key() {
 
         // envoie un requete avec la clé rentré par l'utilisateur
@@ -237,69 +301,6 @@ class AccountPage extends Component {
         this.setState({viewstate: view})
     }
 
-    render() {
-
-        return (
-            <React.Fragment>
-                <div id='account_view'>
-                    <div id='menu'>
-                        <div id='key_form'>
-                            <input id='api-key' type="text" placeholder='API key'/>
-                            <button className="btn btn-dark" onClick={() => this.verify_key()}>Submit</button>
-                        </div>
-                        <h3>Account</h3>
-                        {this.state.valid_key && <div className='menu_content'>
-                            <div>
-                                <div>Characters</div>
-                                <div id='chara_list'>
-                                    {!this.state.chara_list ? (<React.Fragment/>):(this.state.chara_list.map(item => {return <li key={item} onClick={() => {this.load_character(this.state.api_key, item);this.changeview(null)}}>{item}</li>}))}
-                                </div>
-                            </div>
-                            
-                            <div onClick={() => {this.changeview(5);this.inventoryInfo(this.state.bank, 'bank')}}>Bank</div>
-                            <div onClick={() => {this.changeview(6);this.walletInfo(this.state.wallet)}}>Wallet</div>
-                        </div>}
-                    </div>
-                    {this.state.viewstate < 5 && <div id='character_sheet'>
-                        {this.state.character &&
-                            <React.Fragment>
-                                <div id='chara_header'>
-                                    <div><h2>{this.state.character.name}</h2></div>
-                                    <div id='chara_detail'>
-                                        <div id='chara_info'>
-                                            <div>Race: {this.state.character.race}</div>
-                                            <div>Profession: {this.state.character.profession}</div>
-                                            <div>Level: {this.state.character.level}</div>
-                                            <div>Playtime: {SecToHours(this.state.character.age)}</div>
-                                            <div>Created: {new Date(this.state.character.created).toLocaleString()}</div>
-                                        </div>
-                                        <div id='chara_menu'>
-                                            <li onClick={() => {this.equipmentInfo(this.state.character.equipment);this.changeview(1)}}>Equipment</li>
-                                            <li onClick={() => {this.traitInfo(this.state.character.specializations);this.skillInfo(this.state.character.skills);this.changeview(2)}}>Build</li>
-                                            <li onClick={() => {this.inventoryInfo(this.state.character.bags);this.changeview(3)}}>Inventory</li>
-                                            <li onClick={() => {this.backstoryInfo(this.state.character.backstory);this.changeview(4)}}>Backstory</li>
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr></hr>
-                            </React.Fragment>
-                            }
-                        {(this.state.viewstate !== 1) || !this.state.equipment ? (<React.Fragment/>):(<CharaGear gear = {this.state.equipment}/>)}
-                        {(this.state.viewstate !== 2) || !this.state.skills || !this.state.traits ? (<React.Fragment/>) : (<Charabuild skills = {this.state.skills} traits = {this.state.traits}/>)}
-                        {(this.state.viewstate !== 3) || !this.state.inventory ? (<React.Fragment/>): (<Inventory bags = {this.state.inventory} info = {this.state.character.bags}/>)}
-                        {(this.state.viewstate !== 4) || !this.state.backstory  ? (<React.Fragment/>):(<Backstory journal = {this.state.backstory}/>)}
-                    </div>}
-                    {(this.state.viewstate !== 5) || !this.state.bank_item ? (<React.Fragment/>): (
-                    <div className='Bank'>
-                        <h2>Bank</h2>
-                        <Inventory bags = {this.state.bank_item} info = {this.state.bank}/>
-                    </div>)}
-                    {(this.state.viewstate !== 6) || !this.state.currencies ? (<React.Fragment/>): (
-                        <Wallet wallet = {this.state.wallet} currencies = {this.state.currencies}/>
-                        )}
-                </div>
-            </React.Fragment>);
-    }
 }
  
 export default AccountPage;
