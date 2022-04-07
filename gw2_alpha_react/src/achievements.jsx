@@ -24,15 +24,13 @@ class AchievementsPage extends React.Component {
         return (
             <React.Fragment>
                 <div id='page_view'>
-                    <div id='menu'>
-                        <h3>Navigation</h3>
-                        <hr></hr>
+                    <div className='scrollmenu' id='achmenu'>
                         {
                             this.state.loading_groups || !this.state.groups_info ? (<div>Loading...</div>)
                                  : 
-                                (<div id="menu_content">
+                                (<>
                                     {this.state.groups_info.map(item => { return <li key={item.id} title={item.description} onClick={() => {this.fetchgroup(item.categories); this.showGroup();this.changeLabel(item.name)}}>{item.name}</li>})}
-                                </div>
+                                </>
                             )
                         }
                     </div>

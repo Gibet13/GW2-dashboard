@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const header =  <nav id="general_navbar" className="navbar navbar-expand-sm navbar-dark">
                     <div className="container-fluid">
-                        <a className="navbar-brand" href="">Navbar</a>
+                        <a className="navbar-brand" href="/"><img src="/GW2Dash_logo.png"/></a>
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
                         </button>

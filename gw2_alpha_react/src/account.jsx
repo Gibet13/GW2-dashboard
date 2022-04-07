@@ -34,23 +34,22 @@ class AccountPage extends Component {
         return (
             <React.Fragment>
                 <div id='account_view'>
-                    <div id='menu'>
-                        <div id='key_form'>
-                            <input id='api-key' type="text" placeholder='API key'/>
-                            <button className="btn btn-dark" onClick={() => this.verify_key()}>Submit</button>
-                        </div>
-                        <h3>Account</h3>
+                    <div className='act_scrollmenu' id='menu'>
                         {this.state.valid_key && <div className='menu_content'>
-                            <div>
-                                <div>Characters</div>
-                                <div id='chara_list'>
+                            <div className='dropdown'>
+                                <button className='dropbtn'>Characters</button>
+                                <div className='dropdown-content' id='chara_list'>
                                     {!this.state.chara_list ? (<React.Fragment/>):(this.state.chara_list.map(item => {return <li key={item} onClick={() => {this.load_character(this.state.api_key, item);this.changeview(null)}}>{item}</li>}))}
                                 </div>
                             </div>
                             
-                            <div onClick={() => {this.changeview(5);this.inventoryInfo(this.state.bank, 'bank')}}>Bank</div>
-                            <div onClick={() => {this.changeview(6);this.walletInfo(this.state.wallet)}}>Wallet</div>
+                            <span onClick={() => {this.changeview(5);this.inventoryInfo(this.state.bank, 'bank')}}>Bank</span>
+                            <span onClick={() => {this.changeview(6);this.walletInfo(this.state.wallet)}}>Wallet</span>
                         </div>}
+                        <div id='key_form'>
+                            <input id='api-key' type="text" placeholder='API key'/>
+                            <button className="btn btn-dark" onClick={() => this.verify_key()}>Submit</button>
+                        </div>
                     </div>
                     {this.state.viewstate < 5 && <div id='character_sheet'>
                         {this.state.character &&

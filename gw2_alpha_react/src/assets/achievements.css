@@ -5,10 +5,9 @@ body {
 
 
 #page_view {
-    display: flex;
+    
     flex-direction:row;
     flex-wrap: wrap;
-    margin: 1%;
     flex:1;
 }
 
@@ -25,10 +24,9 @@ li {
     cursor: pointer;
 }
 
-#menu {
+#achmenu {
     flex: 0 1 auto;
     display: flex;
-    flex-direction: column;
 }
 
 #menu_content{
@@ -51,6 +49,23 @@ li {
 
 #content {
     flex: 1 1 auto;
+    margin:1%;
 }
 
+div.scrollmenu {
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  
+  div.scrollmenu li {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px;
+    text-decoration: none;
+  }
+  
+  div.scrollmenu li:hover {
+    background-color: #777;
+  }
 
