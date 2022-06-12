@@ -1,2 +1,4 @@
 # GW2 test Project
- trying to make something with the the gw2 api
+GW2 assistant project 
+
+(GW2-test-Project\gw2_alpha_react\images\Account_nav1)
