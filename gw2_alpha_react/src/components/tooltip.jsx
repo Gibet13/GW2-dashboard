@@ -6,7 +6,9 @@ export function Tooltip(props) {
     return  <div className='tool_tip'>
                 <div className='tooltip_header'>
                     <img src={props.focus.item.icon} alt="" />
-                    <div>{props.focus.details && <React.Fragment>{props.focus.details.count > 1 && <span>{`${props.focus.details.count} `}</span>}</React.Fragment>}{props.focus.item.name}</div>
+                    <div>
+                        {props.focus.details && <React.Fragment>{props.focus.details.count > 1 && <span>{`${props.focus.details.count} `}</span>}</React.Fragment>}{props.focus.item.name}
+                    </div>
                 </div>
                 <hr />
                 {props.focus.item.details && 

@@ -12,6 +12,7 @@
 .menu_content{
     flex: 1;
     display: flex;
+    align-items: center;
 }
 
 #key_form {
@@ -20,7 +21,8 @@
 
 #character_sheet{
     flex: 1 1 auto;
-    margin: 1%;
+    margin-left: 5%;
+    margin-right: 5%;
 }
 
 #chara_header {
@@ -36,7 +38,7 @@
 
 #chara_menu {
     flex: 1 0 auto;
-    text-align: center;
+    text-align: end;
 }
 
 #chara_info {
@@ -68,6 +70,7 @@ div.act_scrollmenu {
     text-align: center;
     padding: 14px;
     text-decoration: none;
+    cursor: pointer;
   }
   
   div.act_scrollmenu li:hover {

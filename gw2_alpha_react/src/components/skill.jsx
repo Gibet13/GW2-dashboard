@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../assets/skill.css'
 
 import {SkillTooltip} from './tooltip.jsx'
+import {onClickOutside} from 'react-onclickoutside'
 
 class Skill extends Component {
 
@@ -28,7 +29,7 @@ class Skill extends Component {
 
 
     render() { 
-        return  (<div className='item' onMouseOver={this.handleMouseOver} onMouseOut={this.handleMouseOut}>
+        return  (<div className='item' onClick={this.handleMouseOver} onClickOutside={this.handleMouseOut}>
                     <img className={this.props.skill.type} src={this.props.skill.icon} alt="" />
                     {this.state.isHovering && <SkillTooltip focus = {this.props}/>}
                 </div>);
