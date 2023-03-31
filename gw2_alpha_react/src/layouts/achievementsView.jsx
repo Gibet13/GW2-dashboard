@@ -1,5 +1,4 @@
 import React from 'react';
-import '../assets/achievementsView.css';
 
 function Achievements(ach_list) {
     ach_list = ach_list.ach_list

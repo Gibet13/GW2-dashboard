@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import './assets/account.css'
 import Charabuild from './layouts/build';
 import CharaGear from './layouts/equipement';
 import Backstory from './layouts/Story';
@@ -9,9 +8,8 @@ import Inventory from './layouts/inventory';
 import { SecToHours } from './helpers/utils.js'
 import Wallet from './layouts/wallet';
 
-
-
 class AccountPage extends Component {
+    
     state = {
         viewstate:null,
         valid_key:false,
@@ -141,6 +139,8 @@ class AccountPage extends Component {
     }
 
     async load_character(key, name) {
+        
+        this.setState({character: null})
 
         // requete retournant les info détaillé d'un personnage
         var response = await fetch(`https://api.guildwars2.com/v2/characters/${name}?access_token=${key}`)
@@ -165,6 +165,8 @@ class AccountPage extends Component {
     }
 
     async equipmentInfo(equipment) {
+
+        this.setState({equipment:null})
         
         var ids = []
         var info = []
@@ -189,6 +191,8 @@ class AccountPage extends Component {
 
     async skillInfo(skills) {
 
+        this.setState({skills:null})
+
         // place les ids dans une liste
         var ids = [skills.pve.heal, skills.pve.utilities[0], skills.pve.utilities[1], skills.pve.utilities[2],skills.pve.elite]
         var info = []
@@ -207,6 +211,8 @@ class AccountPage extends Component {
     }
 
     async traitInfo(traits) {
+
+        this.setState({traits:null})
         
         // place les ids dans une liste
         var ids = [traits.pve[0].id,traits.pve[1].id,traits.pve[2].id]
@@ -219,7 +225,8 @@ class AccountPage extends Component {
     }
 
     async inventoryInfo(bags, type) {
-        
+
+        this.setState({inventory:null})
         
         var ids = []
         var info = []
@@ -288,6 +295,8 @@ class AccountPage extends Component {
     }
 
     async backstoryInfo(story) {
+        
+        this.setState({backstory:null})
 
         // requete retournant les infos de chaque backstory
         var response = await fetch(`https://api.guildwars2.com/v2/backstory/answers?ids=${story.join(",")}`)

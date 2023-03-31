@@ -1,27 +1,25 @@
 import React, { Component } from 'react';
-import '../assets/skill.css'
 
 import {SkillTooltip} from './tooltip.jsx'
-import {onClickOutside} from 'react-onclickoutside'
 
 class Skill extends Component {
 
     constructor(props) {
         super(props);
-        this.handleMouseOver = this.handleMouseOver.bind(this);
-        this.handleMouseOut = this.handleMouseOut.bind(this);
+        this.handleFocus = this.handleFocus.bind(this);
+        this.handleBlur = this.handleBlur.bind(this);
         this.state = {
           isHovering: false
         };
       }
     
-      handleMouseOver() {
+      handleFocus() {
         this.setState(() => ({
           isHovering: true
         }));
       }
     
-      handleMouseOut() {
+      handleBlur() {
         this.setState(() => ({
           isHovering: false
         }));
@@ -29,7 +27,7 @@ class Skill extends Component {
 
 
     render() { 
-        return  (<div className='item' onClick={this.handleMouseOver} onClickOutside={this.handleMouseOut}>
+        return  (<div className='item' tabIndex="0" onFocus={this.handleFocus} onBlur={this.handleBlur}>
                     <img className={this.props.skill.type} src={this.props.skill.icon} alt="" />
                     {this.state.isHovering && <SkillTooltip focus = {this.props}/>}
                 </div>);

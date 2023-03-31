@@ -6,8 +6,6 @@ import AccountPage from './account';
 import header from './layouts/header';
 import Footer from './layouts/footer';
 
-import './assets/App.css'
-
 function App() {
     return(
         <BrowserRouter>

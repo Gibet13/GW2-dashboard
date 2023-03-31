@@ -1,7 +1,6 @@
 import React from 'react';
 import Item  from '../components/item';
 
-import '../assets/inventory.css'
 
 function Inventory(props){
 

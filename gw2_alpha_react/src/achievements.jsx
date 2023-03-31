@@ -1,6 +1,5 @@
 import React from 'react';
 
-import './assets/achievements.css';
 import Achievements from './layouts/achievementsView';
 
 

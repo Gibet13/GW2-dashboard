@@ -1,11 +1,9 @@
 import React from 'react';
 
-import '../assets/tooltip.css'
-
 export function Tooltip(props) {
     return  <div className='tool_tip'>
                 <div className='tooltip_header'>
-                    <img src={props.focus.item.icon} alt="" />
+                    <img src={props.focus.item.icon} className={props.focus.item.rarity} alt="" />
                     <div>
                         {props.focus.details && <React.Fragment>{props.focus.details.count > 1 && <span>{`${props.focus.details.count} `}</span>}</React.Fragment>}{props.focus.item.name}
                     </div>
@@ -39,7 +37,10 @@ export function Tooltip(props) {
 
 export function SkillTooltip(props){
     return  <div className='tool_tip'>
-                <div className='tooltip_header'>{props.focus.skill.name}</div>
+                <div className='tooltip_header'>
+                    <img src={props.focus.skill.icon} alt="" />
+                    <div>{props.focus.skill.name}</div>
+                </div>
                 <hr />
                 <div className='tooltip_description' dangerouslySetInnerHTML={{__html: props.focus.skill.description}}/>
             </div>
@@ -47,7 +48,10 @@ export function SkillTooltip(props){
 
 export function TraitTooltip(props){
     return  <div className='tool_tip'>
-                <div className='tooltip_header'>{props.focus.trait.name}</div>
+                <div className='tooltip_header'>
+                    <img src={props.focus.trait.icon} alt="" />
+                    <div>{props.focus.trait.name}</div>
+                </div>
                 <hr />
                 <div className='tooltip_description' dangerouslySetInnerHTML={{__html: props.focus.trait.description}}/>
             </div>

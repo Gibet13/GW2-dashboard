@@ -7,6 +7,10 @@
 #menu {
     flex: 0 1 auto;
     display: flex;
+    overflow-y: visible;
+    overflow-x: clip;
+    z-index: 10;
+    
 }
 
 .menu_content{

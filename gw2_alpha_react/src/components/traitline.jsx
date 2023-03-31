@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import '../assets/traitline.css'
 import Trait from './trait';
 
 class Traitline extends Component {

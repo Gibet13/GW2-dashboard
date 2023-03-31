@@ -4,12 +4,11 @@
     margin-left: 5%;
     margin-right: 5%;
     overflow-x: auto;
-}
-
-#wallet img{
-    height: 1.5rem;
-    width: 1.5rem;
-    margin-right: 0.5rem;
+    img {
+        height: 1.5rem;
+        width: 1.5rem;
+        margin-right: 0.5rem;
+    }
 }
 
 #currencies {
@@ -17,7 +16,7 @@
     flex-direction: column;
     flex-wrap: wrap;
     height: 80vh;
-}
-#currencies div{
-    margin-right: 1%;
+    div {
+        margin-right: 1%;
+    }
 }

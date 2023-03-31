@@ -1,12 +1,12 @@
 #general_navbar {
     background-color: crimson;
-    z-index: 7;
+    z-index: 11;
     position: sticky;
     top: 0;
-}
-#general_navbar img{
-    height: 48px;
-    width: 48px;
+    img {
+        height: 48px;
+        width: 48px;
+    }
 }
 
 a{

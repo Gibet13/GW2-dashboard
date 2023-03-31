@@ -29,11 +29,10 @@
   
 #trinkets {
     display: flex;
-    flex-direction:column
-}
-  
-#trinkets div {
-    display: flex;
+    flex-direction:column;
+    div {
+        display: flex;
+    }
 }
   
 #stat_view {

@@ -1,6 +1,7 @@
 .tool_tip {
     position: fixed;
     display: flex;
+    z-index: 9;
     left: 5%;
     top:35%;
     flex-direction: column;
@@ -9,10 +10,9 @@
     width: 300px;
     background-color: rgba(0, 0, 0, 0.836);
     border: 2px solid #ffffffc4;
-}
-
-.tool_tip img{
-    margin-right: 1rem;
+    img {
+        margin-right: 1rem;
+    }
 }
 
 .tooltip_header {
@@ -22,26 +22,24 @@
 
 .tooltip_stats {
     display: flex;
-}
-.tooltip_stats  div{
-    flex: 1;
+    div{
+        flex: 1;
+    }
 }
 
 .tooltip_description {
     flex: 1 1 auto;
-}
-
-.tooltip_description div{
-    display: flex;
-    flex-direction: column;
+    div {
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 .tooltip_label {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-}
-
-.tooltip_label div{
-    display: flex;
+    div {
+        display: flex;
+    }
 }

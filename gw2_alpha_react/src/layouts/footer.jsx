@@ -1,5 +1,4 @@
 import React from 'react';
-import '../assets/footer.css'
 
 const Footer =  <div id='footer'>
                     <div>footer</div>

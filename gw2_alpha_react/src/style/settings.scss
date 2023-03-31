@@ -1,0 +1,16 @@
+@font-face {
+    font-family: 'Light';
+    src: url(../assets/fonts/PT_Serif/PTSerif-Regular.ttf);
+}
+
+@font-face {
+    font-family: 'Medium';
+    src: url(../assets/fonts/Cagliostro/Cagliostro-Regular.ttf);
+}
+
+#root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: "Medium", serif;
+}

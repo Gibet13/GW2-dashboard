@@ -1,7 +1,5 @@
 import React from 'react';
 
-import '../assets/wallet.css'
-
 function Wallet(props){
 
     return  <div id='wallet'>

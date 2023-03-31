@@ -1,7 +1,5 @@
 import React from 'react';
 
-import '../assets/backstory.css'
-
 function Backstory(props){
     return  <div id='Backstory' className="accordion accordion-flush"> 
                 {props.journal.map(item => {

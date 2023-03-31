@@ -1,6 +1,5 @@
 import React from 'react';
 
-import '../assets/equipement.css'
 import { parse_attribute } from '../helpers/utils';
 import Item  from '../components/item';
 
